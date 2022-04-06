@@ -1,0 +1,33 @@
+{
+    "require": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Creational\\": "Creational",
+            "Structural\\": "Structural",
+            "Behavioral\\": "Behavioral",
+            "Others\\": "Others"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test" : "vendor/bin/phpunit"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "BasicAuthLib"
+        },
+        {
+            "type": "path",
+            "url": "TokenAuthLib"
+        }
+    ],
+    "license": ["MIT"]
+}
