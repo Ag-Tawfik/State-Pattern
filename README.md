@@ -60,7 +60,7 @@ The State Pattern allows an object to alter its behavior when its internal state
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/Ag-Tawfik/State-Pattern.git
 ```
 
 2. Install dependencies:
