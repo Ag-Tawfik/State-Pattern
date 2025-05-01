@@ -4,11 +4,11 @@ namespace Behavioral\Event;
 
 class RejectedState extends State
 {
-    protected readonly string $state;
+    protected readonly StateEnum $state;
 
     public function __construct()
     {
-        $this->state = StateEnum::REJECTED->value;
+        $this->state = StateEnum::REJECTED;
     }
 
     public function proceed(): void

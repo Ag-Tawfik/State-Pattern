@@ -19,7 +19,7 @@ class StateEventTest extends TestCase
         $event->eventProceed(); // ADMINACCEPTED
         $event->eventProceed(); // PAID
 
-        self::assertEquals(StateEnum::DONE->value, $event->getState()->getState());
+        self::assertEquals(StateEnum::DONE, $event->getState()->getState());
     }
 
     public function testFlowWhenEventIsPhisicalWithAdminRejection()
@@ -30,7 +30,7 @@ class StateEventTest extends TestCase
         $event->eventProceed(); // FILLFORM
         $event->eventProceed(); // ADMINREJECTED
 
-        self::assertEquals(StateEnum::REJECTED->value, $event->getState()->getState());
+        self::assertEquals(StateEnum::REJECTED, $event->getState()->getState());
     }
 
     public function testFlowWhenEventIsOnline()
@@ -41,6 +41,6 @@ class StateEventTest extends TestCase
         $event->eventProceed(); // PAID
         $event->eventProceed(); // FILLFORM
 
-        self::assertEquals(StateEnum::DONE->value, $event->getState()->getState());
+        self::assertEquals(StateEnum::DONE, $event->getState()->getState());
     }
 }

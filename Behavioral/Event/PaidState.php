@@ -4,11 +4,11 @@ namespace Behavioral\Event;
 
 class PaidState extends State
 {
-    protected readonly string $state;
+    protected readonly StateEnum $state;
 
     public function __construct()
     {
-        $this->state = StateEnum::PAID->value;
+        $this->state = StateEnum::PAID;
     }
 
     public function proceed(): void

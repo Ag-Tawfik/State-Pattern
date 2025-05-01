@@ -4,7 +4,7 @@ namespace Behavioral\Event;
 
 abstract class State
 {
-    protected readonly string $state;
+    protected readonly StateEnum $state;
     private ?EventContext $context = null;
 
     public function setEventContext(EventContext $context): void
@@ -20,10 +20,7 @@ abstract class State
         $this->getContext()->setState($state);
     }
 
-    /**
-     * @return string
-     */
-    public function getState(): string
+    public function getState(): StateEnum
     {
         return $this->state;
     }
@@ -41,6 +38,6 @@ abstract class State
 
     private function addStateToLog(): void
     {
-        $this->getContext()->addToEventLogs($this->state);
+        $this->getContext()->addToEventLogs($this->state->value);
     }
 }

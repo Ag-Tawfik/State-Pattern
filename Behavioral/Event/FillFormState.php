@@ -4,11 +4,11 @@ namespace Behavioral\Event;
 
 class FillFormState extends State
 {
-    protected readonly string $state;
+    protected readonly StateEnum $state;
 
     public function __construct()
     {
-        $this->state = StateEnum::FILLFORM->value;
+        $this->state = StateEnum::FILLFORM;
     }
 
     public function proceed(): void

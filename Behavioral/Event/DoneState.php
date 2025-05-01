@@ -4,11 +4,11 @@ namespace Behavioral\Event;
 
 class DoneState extends State
 {
-    protected readonly string $state;
+    protected readonly StateEnum $state;
 
     public function __construct()
     {
-        $this->state = StateEnum::DONE->value;
+        $this->state = StateEnum::DONE;
     }
 
     public function proceed(): void
