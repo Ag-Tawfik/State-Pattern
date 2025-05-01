@@ -2,18 +2,22 @@
 
 namespace Behavioral\Event;
 
-
 class RejectedState extends State
 {
-    protected string $state = StateEnum::REJECTED_STATE;
+    protected readonly string $state;
 
-    public function proceed()
+    public function __construct()
     {
-        // Do Nothing
+        $this->state = StateEnum::REJECTED->value;
     }
 
-    protected function transitionTo(State $state)
+    public function proceed(): void
     {
-        // Do Noting
+        // Rejected state - no transitions
+    }
+
+    protected function transitionTo(State $state): void
+    {
+        // Rejected state - no transitions
     }
 }

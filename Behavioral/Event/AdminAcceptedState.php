@@ -4,7 +4,12 @@ namespace Behavioral\Event;
 
 class AdminAcceptedState extends State
 {
-    protected readonly string $state = StateEnum::ADMINACCEPTED->value;
+    protected readonly string $state;
+
+    public function __construct()
+    {
+        $this->state = StateEnum::ADMINACCEPTED->value;
+    }
 
     public function proceed(): void
     {
@@ -16,4 +21,4 @@ class AdminAcceptedState extends State
                 : new RejectedState()
         );
     }
-}
+} 

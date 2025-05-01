@@ -2,23 +2,23 @@
 
 namespace Behavioral\Event;
 
-
 class FillFormState extends State
 {
-    protected string $state = StateEnum::FILLFORM_STATE;
+    protected readonly string $state;
 
-    private bool $phisicalEvent;
-
-    public function proceed()
+    public function __construct()
     {
-        // Fill form logic
+        $this->state = StateEnum::FILLFORM->value;
+    }
 
-        $this->phisicalEvent = $this->getContext()->getParticipant()->isEventPhisical();
-
-        if ($this->phisicalEvent) {
-            $this->transitionTo(new AdminAccptedState());
-        } else {
-            $this->transitionTo(new DoneState());
-        }
+    public function proceed(): void
+    {
+        $physicalEvent = $this->getContext()->getParticipant()->isEventPhysical();
+        
+        $this->transitionTo(
+            $physicalEvent 
+                ? new AdminAcceptedState()
+                : new DoneState()
+        );
     }
 }

@@ -2,29 +2,14 @@
 
 namespace Behavioral\Event;
 
-
 class EventContext
 {
-    /**
-     * @var User
-     */
-    private User $participant;
+    private array $eventLogs = [];
 
-    /**
-     * @var State
-     */
-    private State $state;
-
-    /**
-     * @var array
-     */
-    private array $eventLogs;
-
-    public function __construct(User $participant)
-    {
-        $this->participant = $participant;
-        $this->state = new AppliedState();
-    }
+    public function __construct(
+        private readonly User $participant,
+        private State $state = new AppliedState()
+    ) {}
 
     /**
      * @return User
@@ -34,8 +19,7 @@ class EventContext
         return $this->participant;
     }
 
-
-    public function eventProceed()
+    public function eventProceed(): void
     {
         $this->state->setEventContext($this);
         $this->state->proceed();
@@ -49,7 +33,7 @@ class EventContext
         return $this->eventLogs;
     }
 
-    public function addToEventLogs(string $log)
+    public function addToEventLogs(string $log): void
     {
         $this->eventLogs[] = $log;
     }

@@ -2,24 +2,23 @@
 
 namespace Behavioral\Event;
 
-
 class AppliedState extends State
-
 {
-    protected string  $state = StateEnum::APPLIED_STATE;
+    protected readonly string $state;
 
-    private bool $phisicalEvent;
-
-    public function proceed()
+    public function __construct()
     {
-        // Apply logic
+        $this->state = StateEnum::APPLIED->value;
+    }
 
-        $this->phisicalEvent = $this->getContext()->getParticipant()->isEventPhisical();
-
-        if ($this->phisicalEvent) {
-            $this->transitionTo(new FillFormState());
-        } else {
-            $this->transitionTo(new PaidState());
-        }
+    public function proceed(): void
+    {
+        $physicalEvent = $this->getContext()->getParticipant()->isEventPhysical();
+        
+        $this->transitionTo(
+            $physicalEvent 
+                ? new FillFormState()
+                : new PaidState()
+        );
     }
 }

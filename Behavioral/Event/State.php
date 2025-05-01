@@ -2,22 +2,20 @@
 
 namespace Behavioral\Event;
 
-
 abstract class State
 {
-    protected string $state;
+    protected readonly string $state;
+    private ?EventContext $context = null;
 
-    private EventContext $context;
-
-    public function setEventContext(EventContext $context)
+    public function setEventContext(EventContext $context): void
     {
         $this->context = $context;
         $this->addStateToLog();
     }
 
-    abstract public function proceed();
+    abstract public function proceed(): void;
 
-    protected function transitionTo(State $state)
+    protected function transitionTo(State $state): void
     {
         $this->getContext()->setState($state);
     }
@@ -33,12 +31,15 @@ abstract class State
     /**
      * @return EventContext
      */
-    public function getContext(): EventContext
+    protected function getContext(): EventContext
     {
+        if ($this->context === null) {
+            throw new \RuntimeException('Context not set');
+        }
         return $this->context;
     }
 
-    private function addStateToLog()
+    private function addStateToLog(): void
     {
         $this->getContext()->addToEventLogs($this->state);
     }

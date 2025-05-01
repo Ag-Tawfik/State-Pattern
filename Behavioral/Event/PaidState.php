@@ -4,20 +4,21 @@ namespace Behavioral\Event;
 
 class PaidState extends State
 {
-    protected string $state = StateEnum::PAID_STATE;
+    protected readonly string $state;
 
-    private bool $phisicalEvent;
-
-    public function proceed()
+    public function __construct()
     {
-        // Pay logic
+        $this->state = StateEnum::PAID->value;
+    }
 
-        $this->phisicalEvent = $this->getContext()->getParticipant()->isEventPhisical();
-
-        if ($this->phisicalEvent) {
-            $this->transitionTo(new DoneState());
-        } else {
-            $this->transitionTo(new FillFormState());
-        }
+    public function proceed(): void
+    {
+        $physicalEvent = $this->getContext()->getParticipant()->isEventPhysical();
+        
+        $this->transitionTo(
+            $physicalEvent 
+                ? new DoneState()
+                : new FillFormState()
+        );
     }
 }

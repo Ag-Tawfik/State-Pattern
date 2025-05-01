@@ -2,18 +2,22 @@
 
 namespace Behavioral\Event;
 
-
 class DoneState extends State
 {
-    protected string $state = StateEnum::DONE_STATE;
+    protected readonly string $state;
 
-    public function proceed()
+    public function __construct()
     {
-        // Do Nothing
+        $this->state = StateEnum::DONE->value;
     }
 
-    protected function transitionTo(State $state)
+    public function proceed(): void
     {
-        // Do Noting
+        // Final state - no transitions
+    }
+
+    protected function transitionTo(State $state): void
+    {
+        // Final state - no transitions
     }
 }

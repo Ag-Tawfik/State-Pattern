@@ -5,16 +5,11 @@ namespace Behavioral\Event;
 
 class User
 {
-    private string $name;
-    private bool $phisicalEvent;
-    private bool $adminAccepted;
-
-    public function __construct(string $name, bool $phisicalEvent, bool $adminAccepted)
-    {
-        $this->name = $name;
-        $this->phisicalEvent = $phisicalEvent;
-        $this->adminAccepted = $adminAccepted;
-    }
+    public function __construct(
+        private readonly string $name,
+        private readonly bool $physicalEvent,
+        private readonly bool $adminAccepted
+    ) {}
 
     /**
      * @return string
@@ -27,9 +22,9 @@ class User
     /**
      * @return bool
      */
-    public function isEventPhisical(): bool
+    public function isEventPhysical(): bool
     {
-        return $this->phisicalEvent;
+        return $this->physicalEvent;
     }
 
     public function isAdminAccepted(): bool
